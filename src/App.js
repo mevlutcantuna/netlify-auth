@@ -12,14 +12,14 @@ function App() {
   }
 
   const logOut = () => {
-    
+    console.log('logout')
   }
 
   return (
     <div className="App">
       <div onClick={openIdentityModal}>Test</div>
       <div>Window</div>
-      <button>LogOut</button>
+      <button onClick={logOut}>LogOut</button>
     </div>
   );
 }
