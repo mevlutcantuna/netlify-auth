@@ -1,19 +1,24 @@
 function App() {
 
-  const openIdentityModal = () => {
-    const netlifyIdentity = window.netlifyIdentity;
+  const netlifyIdentity = window.netlifyIdentity;
 
+  const openIdentityModal = () => {
+    
     if(netlifyIdentity){
-      netlifyIdentity.open('signup');
+      netlifyIdentity.open();
     }else{
       console.log('not working') 
     }
   }
 
-  return (
-    <div onClick={openIdentityModal} className="App">
-      Test
+  const logOut = () => {
+    
+  }
 
+  return (
+    <div className="App">
+      <div onClick={openIdentityModal}>Test</div>
+      <div>Window</div>
       <button>LogOut</button>
     </div>
   );
