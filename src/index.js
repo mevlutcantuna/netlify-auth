@@ -8,7 +8,7 @@ import netlifyIdentity from 'netlify-identity-widget';
 
 window.netlifyIdentity = netlifyIdentity;
 
-netlifyIdentity.init();
+netlifyIdentity.init([{APIUrl:'https://gracious-goodall-976590.netlify.app/',locale:'en'}]);
 
 ReactDOM.render(
   <React.StrictMode>

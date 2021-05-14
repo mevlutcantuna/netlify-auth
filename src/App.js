@@ -12,7 +12,7 @@ function App() {
   }
 
   const logOut = () => {
-    console.log('logout')
+    netlifyIdentity.logout();
   }
 
   return (
