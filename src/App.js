@@ -1,25 +1,48 @@
+import React from 'react';
+import netlifyIdentity from 'netlify-identity-widget';
+
 function App() {
+  const [user,setUser] = React.useState(null);
+  React.useEffect(() => {
+    netlifyIdentity.on('login',(user) => {
+      setUser(user)
+      netlifyIdentity.close();
+    });
+    netlifyIdentity.on('logout',() => setUser(null));
 
-  const netlifyIdentity = window.netlifyIdentity;
-
-  const openIdentityModal = () => {
+    netlifyIdentity.init();
     
+    return () => {
+      netlifyIdentity.off('login');
+      netlifyIdentity.off('logout')
+    }
+    },[]);
+  console.log(user);
+
+  const login = () => {
     if(netlifyIdentity){
       netlifyIdentity.open();
-    }else{
-      console.log('not working') 
     }
   }
 
-  const logOut = () => {
+  const logout = () => {
     netlifyIdentity.logout();
   }
 
   return (
-    <div className="App">
-      <div onClick={openIdentityModal}>Test</div>
-      <div>Window</div>
-      <button onClick={logOut}>LogOut</button>
+    <div className="app">
+      <div style={{height:'3rem',background:'aquamarine',display:'flex',justifyContent:'center',alignItems:'center'}}>
+        {!user
+            ?
+            <button onClick={login}>Login</button>
+            :
+            (
+                <div>
+                  <button onClick={logout}>Logout</button>
+                  <span style={{marginLeft:'2rem'}}>{user.user_metadata.full_name}</span>
+                </div>
+            )}
+      </div>
     </div>
   );
 }
